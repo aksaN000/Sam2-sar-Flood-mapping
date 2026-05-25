@@ -80,7 +80,7 @@ def evaluate_one(
         module = module.cuda()
 
     # The pakistan2022 split lives at a separate chip root (the TU Wien-derived
-    # chips built by data_pipelines/pakistan_2022/acquire.py).
+    # chips built by model/acquire.py).
     if split == "pakistan2022":
         if pakistan2022_root is None:
             pakistan2022_root = Path("./data/pakistan-2022-chips")
