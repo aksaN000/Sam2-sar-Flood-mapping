@@ -2,18 +2,18 @@
 
 Total target time: **~10:30**. Two presenters; the handoff is between Slide 9 and Slide 10.
 
-- **Part 1 (Aksan): Slides 1–9, ~5:30.** Title, motivation, three gaps, methodology, polarimetric input, datasets, experimental setup, transition.
-- **Part 2 (Mahbubur): Slides 10–17, ~5:00.** Headline results, the Pakistan-2022 collapse, the polarimetric diagnostic, qualitative figure, why-it-happens, uncertainty negative finding, three-gap closure, limitations + close.
+- **Part 1 (Mahbubur): Slides 1–9, ~5:30.** Title, motivation, three gaps, methodology, polarimetric input, datasets, experimental setup, transition.
+- **Part 2 (Aksan): Slides 10–17, ~5:00.** Headline results, the Pakistan-2022 collapse, the polarimetric diagnostic, qualitative figure, why-it-happens, uncertainty negative finding, three-gap closure, limitations + close.
 
 Pace: ~150 words/minute, conversational. Each section below is what to *say*, not what to read off the screen.
 
 ---
 
-## PART 1: Aksan
+## PART 1: Mahbubur
 
 ### Slide 1: Title (~30 sec)
 
-> Good [morning / afternoon]. I'm Aksan Gony Alif, and along with my co-author Mahbubur Rahman, we present *Parameter-Efficient Adaptation of SAM 2 for Sentinel-1 SAR Flood Inundation Mapping in the Indo-Gangetic Region*.
+> Good [morning / afternoon]. I'm Mahbubur Rahman, and along with my co-author Aksan Gony Alif, we present *Parameter-Efficient Adaptation of SAM 2 for Sentinel-1 SAR Flood Inundation Mapping in the Indo-Gangetic Region*.
 >
 > The motivation is direct. Bangladesh floods every monsoon. Optical satellites can't see through monsoon clouds, exactly when flood maps matter most. Radar can. But radar imagery looks nothing like the natural photographs that modern vision models like SAM 2 were trained on. Our question is: can we adapt a billion-mask foundation model to noisy single-channel radar, cheaply, and have it actually generalize to a flood event it has never seen?
 
@@ -23,7 +23,7 @@ Pace: ~150 words/minute, conversational. Each section below is what to *say*, no
 >
 > But SAR is fundamentally different from RGB photography. It's a noisy single-channel logarithmic-intensity signal where bright versus dark means rough versus smooth surface, not red versus blue light. Foundation models like SAM 2 don't transfer to it naturally.
 >
-> Our research question follows. Can we adapt SAM 2 to radar cheaply, and have it generalize to unseen flood events? The answer, mostly yes, with one important caveat about the cross-polarization channel that Mahbubur will get to in part 2.
+> Our research question follows. Can we adapt SAM 2 to radar cheaply, and have it generalize to unseen flood events? The answer, mostly yes, with one important caveat about the cross-polarization channel that Aksan will get to in part 2.
 
 ### Slide 3: Three gaps in prior work (~50 sec)
 
@@ -99,15 +99,15 @@ Pace: ~150 words/minute, conversational. Each section below is what to *say*, no
 >
 > The cross-polarization channel, the one that helps in-distribution, turns out to be the *operative* out-of-distribution failure mode.
 >
-> Mahbubur, take it from here.
+> Aksan, take it from here.
 
 ---
 
-## PART 2: Mahbubur
+## PART 2: Aksan
 
 ### Slide 10: Headline results (~50 sec)
 
-> Thanks, Aksan. Here is the headline results table.
+> Thanks, Mahbubur. Here is the headline results table.
 >
 > Four rows, four splits, with the U-Net baseline at the top for reference.
 >
@@ -201,7 +201,7 @@ Pace: ~150 words/minute, conversational. Each section below is what to *say*, no
 - **Slide 3**: pause briefly between *First*, *Second*, *Third*. The three-beat rhythm makes the gaps land.
 - **Slide 5**: this is the dense one. Slow down on VV vs VH. Say *"VV is the same polarization going out and coming back. VH is cross-polarized."* This sets up the partner's punchline.
 - **Slide 7**: own the line *"we constructed this dataset in this work."* Individual contribution to highlight.
-- **Slide 9 → Slide 10 handoff**: rehearse this transition most. Aksan finishes; brief silence; Mahbubur picks up cleanly with "Thanks, Aksan." Avoid talking over each other.
+- **Slide 9 → Slide 10 handoff**: rehearse this transition most. Mahbubur finishes; brief silence; Aksan picks up cleanly with "Thanks, Mahbubur." Avoid talking over each other.
 - **Slide 12**: the numbers (0.113 → 0.632, etc.) need to land confidently. This is the punchline of the entire talk.
 - **Slide 17**: end on the line *"Thank you. We're happy to take questions."* Don't let the talk peter out.
 
