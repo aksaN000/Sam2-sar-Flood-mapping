@@ -74,7 +74,7 @@ def benchmark_one(ckpt_path: Path, cfg_path: Path, n_warmup: int, n_trials: int,
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--runs-dir", type=Path, default=Path("runs"))
-    p.add_argument("--output-dir", type=Path, default=Path("thesis/figs"))
+    p.add_argument("--output-dir", type=Path, default=Path("report/figs"))
     p.add_argument("--json-out", type=Path, default=Path("runs/inference_latency.json"))
     p.add_argument("--n-warmup", type=int, default=10)
     p.add_argument("--n-trials", type=int, default=100)

@@ -85,20 +85,20 @@ chips x ~30 cells x sub-second-per-chip inference). The script:
 ```bash
 python -m model.make_figures \
     --results runs/aggregate_results.json \
-    --output thesis/figs
+    --output report/figs
 python -m model.analysis_extras \
     --runs-dir runs \
     --results runs/aggregate_results.json \
-    --output-dir thesis/figs
+    --output-dir report/figs
 ```
 This refreshes `results_table.tex`, `ood_gap.tex`, and any other figure
 that reads from `aggregate_results.json`.
 
 ### Step 6. Recompile the paper
 ```bash
-cd thesis
+cd report
 pdflatex paper_ieee.tex && pdflatex paper_ieee.tex
-pdflatex thesis_proposal.tex && pdflatex thesis_proposal.tex
+pdflatex research_report_detailed.tex && pdflatex research_report_detailed.tex
 ```
 
 ## After the rerun

@@ -347,7 +347,7 @@ def reliability_diagram(report: dict, out_path: Path) -> None:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--results", type=Path, default=Path("runs/aggregate_results.json"))
-    p.add_argument("--output", type=Path, default=Path("thesis/figs"))
+    p.add_argument("--output", type=Path, default=Path("report/figs"))
     args = p.parse_args()
 
     args.output.mkdir(parents=True, exist_ok=True)
