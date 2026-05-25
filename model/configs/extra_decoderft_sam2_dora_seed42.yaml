@@ -1,0 +1,10 @@
+defaults:
+  - _base
+model:
+  backbone: sam2-hiera-bp
+  peft: dora
+  mask_decoder_strategy: full-ft
+train:
+  seed: 42
+dataset:
+  polarimetric_mode: ratio

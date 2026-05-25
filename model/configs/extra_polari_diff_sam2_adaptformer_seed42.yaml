@@ -1,0 +1,13 @@
+# Polarimetric x PEFT interaction ablation (Tier 2 #9). Single seed, sam2-hiera-bp.
+defaults:
+  - _base
+
+model:
+  backbone: sam2-hiera-bp
+  peft: adaptformer
+
+train:
+  seed: 42
+
+dataset:
+  polarimetric_mode: diff

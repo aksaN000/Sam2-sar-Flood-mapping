@@ -1,0 +1,15 @@
+# Linear-probe baseline: frozen encoder, decoder-only training (LoRA-r4 head).
+# Auto-generated. Inherits defaults from _base.yaml.
+defaults:
+  - _base
+
+model:
+  backbone: sam-vit-b
+  peft: none
+  mask_decoder_strategy: lora-r4
+
+train:
+  seed: 123
+
+dataset:
+  polarimetric_mode: ratio

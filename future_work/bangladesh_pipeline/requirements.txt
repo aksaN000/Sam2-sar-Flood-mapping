@@ -1,0 +1,22 @@
+# Pinned dependencies for the Bangladesh-2022-Sylhet test set construction.
+# These versions are tested together; deviating from them may cause
+# subtle issues with raster I/O or coordinate system handling.
+
+# Core scientific stack
+numpy>=1.24,<2.0
+scipy>=1.11
+matplotlib>=3.7
+
+# Geospatial I/O. rasterio handles GeoTIFF reading and writing.
+# geopandas reads shapefiles. shapely is the geometry engine
+# both depend on. fiona handles vector format I/O for geopandas.
+rasterio>=1.3.9,<2.0
+geopandas>=0.14
+shapely>=2.0
+fiona>=1.9
+
+# Google Earth Engine Python client
+earthengine-api>=0.1.380
+
+# HTTP for the GADM download in script 01 (after fresh checkout)
+requests>=2.31

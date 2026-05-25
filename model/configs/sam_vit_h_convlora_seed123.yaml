@@ -1,0 +1,15 @@
+# Auto-generated. Inherits defaults from _base.yaml.
+defaults:
+  - _base
+
+model:
+  backbone: sam-vit-h
+  peft: conv-lora
+
+train:
+  seed: 123
+  # ViT-H needs grad_accum increase to keep effective batch=4 within 24 GB:
+  grad_accum: 4
+
+dataset:
+  polarimetric_mode: ratio

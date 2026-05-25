@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.conda/
+*.egg-info/
+
+# Training artifacts (too large for git)
+runs/
+runs_stretch/
+logs/
+*.ckpt
+lightning_logs/
+
+# Data (downloaded fresh on each machine)
+data/
+*.tif
+*.tiff
+# But keep the pre-built Bangladesh AOI and the GADM input
+!future_work/bangladesh_pipeline/data/aoi/bangladesh_2022_aoi.geojson
+!future_work/bangladesh_pipeline/data/raw/gadm41_BGD_2.json
+
+# Acquisition workdirs
+_workdir/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex*
+*.fls
+*.fdb_latexmk
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Internal / debug artifacts
+*.broken-*
+.claude/
+CLAUDE.md
+CONTEXT.md
+DISK_LOG.md
+RETRY_LOG.md
+CHANGES.md
+NEW_INSTANCE_RESUME.md
+VAST_AGENT_GUIDE.md
+VAST_AI_SETUP.md

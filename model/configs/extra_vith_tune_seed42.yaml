@@ -1,0 +1,18 @@
+defaults:
+  - _base
+model:
+  backbone: sam-vit-h
+  peft: conv-lora
+  rank: 16
+train:
+  seed: 42
+  grad_accum: 8
+  finetune_epochs: 10
+  optimizer:
+    name: adamw
+    lr_adapter: 1.0e-05
+    lr_unfrozen: 1.0e-06
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+dataset:
+  polarimetric_mode: ratio

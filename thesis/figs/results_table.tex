@@ -1,0 +1,18 @@
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Backbone} & \textbf{Method} & \textbf{Sen1F11 test} & \textbf{Bolivia held-out} & \textbf{Pakistan-Sen1F11} & \textbf{Pakistan-2022} \\
+                  &                & IoU $\pm$ std         & IoU $\pm$ std            & IoU $\pm$ std            & IoU $\pm$ std         \\
+\midrule
+U-Net (baseline) & full FT & $0.601 \pm 0.010$ & $0.684 \pm 0.015$ & $0.271 \pm 0.015$ & $0.672 \pm 0.005$ \\
+sam-vit-b & zero-shot & 0.107 & 0.155 & 0.112 & 0.046 \\
+SAM 2 Hiera-B+ & zero-shot & 0.111 & 0.159 & 0.124 & 0.046 \\
+SAM ViT-B & LoRA & $0.483 \pm 0.006$ & $0.291 \pm 0.064$ & $0.263 \pm 0.005$ & $0.104 \pm 0.003$ \\
+SAM ViT-B & DoRA & $0.484 \pm 0.004$ & $0.269 \pm 0.098$ & $0.262 \pm 0.005$ & $0.105 \pm 0.005$ \\
+SAM ViT-B & Conv-LoRA & $0.493 \pm 0.027$ & $0.301 \pm 0.104$ & $0.241 \pm 0.024$ & $0.105 \pm 0.001$ \\
+SAM ViT-B & AdaptFormer & $0.603 \pm 0.001$ & $0.419 \pm 0.063$ & $0.263 \pm 0.001$ & $0.103 \pm 0.003$ \\
+SAM 2 Hiera-B+ & LoRA & $0.599 \pm 0.002$ & $0.635 \pm 0.013$ & $0.255 \pm 0.002$ & $0.140 \pm 0.020$ \\
+SAM 2 Hiera-B+ & DoRA & $0.602 \pm 0.004$ & $0.637 \pm 0.019$ & $0.254 \pm 0.002$ & $0.132 \pm 0.017$ \\
+SAM 2 Hiera-B+ & Conv-LoRA & $0.600 \pm 0.004$ & $0.599 \pm 0.028$ & $0.257 \pm 0.002$ & $0.113 \pm 0.003$ \\
+SAM 2 Hiera-B+ & AdaptFormer & $0.634 \pm 0.012$ & $0.458 \pm 0.246$ & $0.254 \pm 0.001$ & $0.090 \pm 0.007$ \\
+\bottomrule
+\end{tabular}

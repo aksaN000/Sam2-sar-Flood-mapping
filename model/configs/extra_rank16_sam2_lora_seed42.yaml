@@ -1,0 +1,10 @@
+defaults:
+  - _base
+model:
+  backbone: sam2-hiera-bp
+  peft: lora
+  rank: 16
+train:
+  seed: 42
+dataset:
+  polarimetric_mode: ratio
