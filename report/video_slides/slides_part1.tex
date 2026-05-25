@@ -1,0 +1,172 @@
+% Video-presentation slides, Part 1 (Aksan).
+% Covers: title -> motivation -> three gaps -> methodology -> datasets -> setup.
+% Total target time: 5 to 6 minutes.
+% Compile with: pdflatex slides_part1.tex (twice for refs).
+
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usetheme{metropolis}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{array}
+
+\definecolor{accent}{HTML}{1E64C8}
+\definecolor{warn}{HTML}{C81E1E}
+\setbeamercolor{progress bar}{fg=accent}
+\setbeamercolor{frametitle}{bg=accent}
+
+\title{Parameter-Efficient Adaptation of SAM~2 for\\Sentinel-1 SAR Flood Inundation Mapping\\in the Indo-Gangetic Region}
+\subtitle{Part 1: Motivation, Methods, Datasets}
+\author{Aksan Gony Alif \\ {\small Co-author: Mahbubur Rahman}}
+\institute{BRAC University}
+\date{}
+
+\begin{document}
+
+% ---------------------------------------------------------- Slide 1
+\maketitle
+
+% ---------------------------------------------------------- Slide 2
+\begin{frame}{Why this paper exists}
+\begin{itemize}
+    \item Bangladesh floods every monsoon. \emph{Cloud cover} makes optical satellites unreliable when flood maps matter most.
+    \item Sentinel-1 SAR \textbf{penetrates clouds}, available globally and free.
+    \item But SAR is a noisy, single-channel, logarithmic-intensity signal --- nothing like the natural RGB photographs vision foundation models (SAM, SAM 2) are pretrained on.
+    \item \textbf{Question:} can we adapt SAM 2 to radar, \emph{cheaply}, and have it generalize to an unseen flood event?
+\end{itemize}
+\vspace{0.5em}
+\textbf{Answer (preview):} yes, mostly --- with one important caveat about the cross-polarization channel.
+\end{frame}
+
+% ---------------------------------------------------------- Slide 3
+\begin{frame}{Three gaps in prior work}
+\begin{enumerate}
+    \item[\textbf{1.}] \textbf{No head-to-head comparison} of parameter-efficient fine-tuning (PEFT) methods on SAM-family backbones for SAR floods. Prior papers use one method each; you can't tell which adapter to pick.
+    \vspace{0.5em}
+    \item[\textbf{2.}] \textbf{No test of operational utility} of uncertainty estimates. Prior SAR-flood work reports aggregate calibration (low ECE) but does not test whether the resulting \emph{per-pixel} scores are useful for triage.
+    \vspace{0.5em}
+    \item[\textbf{3.}] \textbf{No public reproducible OOD test set} combining temporal \emph{and} geographic out-of-distribution shift on Sentinel-1. Standard benchmarks hold out one country, but all events are from 2017--2019.
+\end{enumerate}
+\vspace{0.5em}
+\centering
+\emph{We close all three.}
+\end{frame}
+
+% ---------------------------------------------------------- Slide 4
+\begin{frame}{Methodology: a controlled empirical sweep}
+\textbf{5 backbones $\times$ 4 PEFT methods $\times$ 3 seeds}
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Backbone & LoRA & DoRA & Conv-LoRA & AdaptFormer \\
+\midrule
+SAM ViT-B (94 M)            & \checkmark & \checkmark & \checkmark & \checkmark \\
+SAM 2 Hiera-B+ (81 M)       & \checkmark & \checkmark & \checkmark & \checkmark \\
+\addlinespace[0.3em]
+SAM ViT-L (308 M)           &           &           & \checkmark &            \\
+SAM ViT-H (636 M)           &           &           & \checkmark &            \\
+SAM 2 Hiera-L (224 M)       &           &           & \checkmark &            \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+\begin{itemize}
+    \item Full sweep + baselines: $\approx$ \textbf{3.5 hours}, $\approx$ \textbf{\$10} cloud compute (dual NVIDIA RTX PRO 5000 Blackwell).
+    \item Uncertainty: \textbf{Monte Carlo dropout}, 20 stochastic passes per chip.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------- Slide 5
+\begin{frame}{Polarimetric ``pseudo-RGB'' input}
+SAM 2 was pretrained on three RGB channels. Sentinel-1 gives us only two:
+\begin{itemize}
+    \item \textbf{VV} (co-polarization): vertical transmit, vertical receive.
+    \item \textbf{VH} (cross-polarization): vertical transmit, horizontal receive.
+\end{itemize}
+We must synthesize a third channel.
+\vspace{0.8em}
+
+\textbf{Three compositions compared:}
+\begin{center}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{ratio} & $(\,\text{VV},\;\text{VH},\;10 \log_{10}(P_{VV}/P_{VH})\,)$ \\
+\textbf{diff}  & $(\,\text{VV},\;\text{VH},\;\text{VV}_{dB} - \text{VH}_{dB}\,)$ \\
+\textbf{single} & $(\,\text{VV},\;\text{VV},\;\text{VV}\,)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.6em}
+
+\small
+By the dB-domain identity $10\log_{10}(P_{VV}/P_{VH}) = \text{VV}_{dB} - \text{VH}_{dB}$, \emph{ratio} and \emph{diff} produce identical model inputs. The meaningful contrast is between dual-polarization (ratio or diff) and single-polarization (VV alone).
+\end{frame}
+
+% ---------------------------------------------------------- Slide 6
+\begin{frame}{Four evaluation splits}
+\begin{center}
+\small
+\begin{tabular}{lcl}
+\toprule
+\textbf{Split} & \textbf{Chips} & \textbf{Role} \\
+\midrule
+Sen1Floods11 test       & 90  & In-distribution (10 countries) \\
+Sen1Floods11 Bolivia    & 15  & Held-out country \\
+Pakistan-S1F11 subset   & 12  & Regional in-distribution (2010 event) \\
+\textcolor{accent}{\textbf{Pakistan-2022}} & \textcolor{accent}{\textbf{39}} & \textcolor{accent}{\textbf{Strict OOD: new geography + time}} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.6em}
+\begin{itemize}
+    \item The first three splits come from \textbf{Sen1Floods11} (Bonafilia et al., CVPR Workshops 2020). All events are from 2017--2019.
+    \item The fourth, \textbf{Pakistan-2022}, is constructed in this work. It covers the August--September 2022 Indo-Gangetic monsoon flood --- the same meteorological system that produces Bangladesh's annual flooding.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------- Slide 7
+\begin{frame}{Pakistan-2022 dataset construction}
+\textbf{Two public sources, paired in this work:}
+\begin{itemize}
+    \item \textbf{Labels:} TU Wien Sentinel-1-derived flood-extent product\\ (Roth et al., NHESS 2023; CC-BY 4.0)
+    \item \textbf{Imagery:} Microsoft Planetary Computer \texttt{sentinel-1-rtc}\\ (Radiometric Terrain Corrected, anonymous SAS-token access)
+\end{itemize}
+\vspace{0.6em}
+
+\textbf{Pipeline:} for each TU Wien mask date, find the matching Sentinel-1 RTC scene, read at native 10\,m, reproject the mask upward to 10\,m, tile into 512$\times$512 chips.
+
+\vspace{0.6em}
+\textbf{Result:} 39 chips at native 10\,m, fully Sen1Floods11-compatible layout.
+
+\vspace{0.4em}
+\textcolor{warn}{\emph{Acquisition note:}} the first chip set was at 20\,m and mismatched the training distribution. We rebuilt at native 10\,m; that is the dataset released here.
+\end{frame}
+
+% ---------------------------------------------------------- Slide 8
+\begin{frame}{Experimental setup}
+\textbf{Training protocol:}
+\begin{itemize}
+    \item 10 epochs on the 252 Sen1Floods11 hand-labelled training chips.
+    \item AdamW optimizer; separate learning rates $10^{-4}$ (adapters) / $10^{-5}$ (unfrozen pretrained weights); cosine schedule with 200-step linear warmup.
+    \item Loss: Dice + binary cross-entropy with logits, equal weight.
+    \item Mixed-precision fp16; batch size 1 with gradient accumulation 4 (effective batch 4).
+    \item \textbf{No training-time data augmentation.} Test-time augmentation (4 rotations $\times$ 2 flips = 8 views) is applied only at inference for the ensemble condition.
+\end{itemize}
+\vspace{0.4em}
+\textbf{Seeds:} 42, 123, 20025 (three independent reruns per cell).
+\end{frame}
+
+% ---------------------------------------------------------- Slide 9 (handoff)
+\begin{frame}{Handoff: what we found}
+\centering
+\vspace{0.4em}
+\textbf{\large Setup complete.}\\[1em]
+The next half of this talk walks through what we found across these four splits --- including one diagnostic finding that we did \emph{not} expect:\\[1.2em]
+\textcolor{warn}{\large The cross-polarization channel turns out to be the operative\\out-of-distribution failure mode.}\\[1.5em]
+\emph{Mahbubur Rahman will take it from here.}
+\end{frame}
+
+\end{document}
