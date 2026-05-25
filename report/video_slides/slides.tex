@@ -24,7 +24,7 @@
 \begin{document}
 
 % ====================================================================
-% PART 1 — Aksan: motivation, methods, datasets, setup (~5:30 min)
+% PART 1 - Aksan: motivation, methods, datasets, setup (~5:30 min)
 % ====================================================================
 
 % ---------------------------------------------------------- Slide 1
@@ -35,11 +35,11 @@
 \begin{itemize}
     \item Bangladesh floods every monsoon. \emph{Cloud cover} makes optical satellites unreliable when flood maps matter most.
     \item Sentinel-1 SAR \textbf{penetrates clouds}, available globally and free.
-    \item But SAR is a noisy, single-channel, logarithmic-intensity signal --- nothing like the natural RGB photographs vision foundation models (SAM, SAM 2) are pretrained on.
+    \item But SAR is a noisy, single-channel, logarithmic-intensity signal, nothing like the natural RGB photographs vision foundation models (SAM, SAM 2) are pretrained on.
     \item \textbf{Question:} can we adapt SAM 2 to radar, \emph{cheaply}, and have it generalize to an unseen flood event?
 \end{itemize}
 \vspace{0.5em}
-\textbf{Answer (preview):} yes, mostly --- with one important caveat about the cross-polarization channel.
+\textbf{Answer (preview):} yes, mostly, with one important caveat about the cross-polarization channel.
 \end{frame}
 
 % ---------------------------------------------------------- Slide 3
@@ -126,7 +126,7 @@ Pakistan-S1F11 subset   & 12  & Regional in-distribution (2010 event) \\
 \vspace{0.6em}
 \begin{itemize}
     \item The first three splits come from \textbf{Sen1Floods11} (Bonafilia et al., CVPR Workshops 2020). All events are from 2017--2019.
-    \item The fourth, \textbf{Pakistan-2022}, is constructed in this work. It covers the August--September 2022 Indo-Gangetic monsoon flood --- the same meteorological system that produces Bangladesh's annual flooding.
+    \item The fourth, \textbf{Pakistan-2022}, is constructed in this work. It covers the August--September 2022 Indo-Gangetic monsoon flood, the same meteorological system that produces Bangladesh's annual flooding.
 \end{itemize}
 \end{frame}
 
@@ -167,12 +167,12 @@ Pakistan-S1F11 subset   & 12  & Regional in-distribution (2010 event) \\
 \centering
 \vspace{0.4em}
 \textbf{\large The next half: what we actually found.}\\[1em]
-Across the four evaluation splits --- plus one diagnostic finding we did \emph{not} expect:\\[1.2em]
+Across the four evaluation splits, plus one diagnostic finding we did \emph{not} expect:\\[1.2em]
 \textcolor{warn}{\large The cross-polarization channel turns out to be the operative\\out-of-distribution failure mode.}
 \end{frame}
 
 % ====================================================================
-% PART 2 — Mahbubur: results, diagnostic, conclusion (~5:00 min)
+% PART 2 - Mahbubur: results, diagnostic, conclusion (~5:00 min)
 % ====================================================================
 
 % ---------------------------------------------------------- Slide 10
@@ -203,8 +203,8 @@ Hiera-B+ + DoRA               & 0.602 & 0.637 & 0.254 & \textcolor{warn}{0.132} 
 \begin{itemize}
     \item Every SAM-family cell collapses, regardless of:
     \begin{itemize}
-        \item Backbone (ViT-Base, ViT-Large, ViT-Huge, Hiera-Base-Plus, Hiera-Large --- all collapse)
-        \item PEFT method (LoRA, DoRA, Conv-LoRA, AdaptFormer --- all collapse)
+        \item Backbone (ViT-Base, ViT-Large, ViT-Huge, Hiera-Base-Plus, Hiera-Large, all collapse)
+        \item PEFT method (LoRA, DoRA, Conv-LoRA, AdaptFormer, all collapse)
         \item Random seed
     \end{itemize}
     \item U-Net on the same training data does not collapse. So the collapse is \emph{specific to the adapted SAM-family models}, not a property of the dataset.
