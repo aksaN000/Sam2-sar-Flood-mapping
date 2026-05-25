@@ -98,7 +98,7 @@ class Sen1Floods11Dataset(Dataset):
             if not split_path.exists():
                 raise FileNotFoundError(
                     f"Pakistan-2022 split CSV not found: {split_path}\n"
-                    f"Did you run future_work/pakistan_2022/acquire.py first, and "
+                    f"Did you run data_pipelines/pakistan_2022/acquire.py first, and "
                     f"are you passing the right --root (the chips root, not the "
                     f"Sen1Floods11 root)?"
                 )
