@@ -69,14 +69,20 @@ python -m model.rerun_pakistan2022 \
 - Original paper: Bonafilia et al., *Sen1Floods11: a georeferenced dataset to train and test deep learning flood algorithms for Sentinel-1*, CVPR Workshops 2020 ([paper](https://openaccess.thecvf.com/content_CVPRW_2020/html/w11/Bonafilia_Sen1Floods11_A_Georeferenced_Dataset_to_Train_and_Test_Deep_Learning_CVPRW_2020_paper.html))
 - Upstream repository: [cloudtostreet/Sen1Floods11](https://github.com/cloudtostreet/Sen1Floods11)
 
-### Pakistan-2022 OOD test set (built in this work)
+### Pakistan-2022 OOD test set (released with this work)
 
-39 chips at Sentinel-1's native 10 m resolution covering the August-September 2022 Indo-Gangetic monsoon flood. Used as the strict geographic-and-temporal out-of-distribution test. Built from two public sources via the acquisition pipeline in `data_pipelines/pakistan_2022/acquire_v2.py`:
+39 hand-built chips at Sentinel-1's native 10 m resolution covering the August-September 2022 Indo-Gangetic monsoon flood. Used as the strict geographic-and-temporal out-of-distribution test surface. Sen1Floods11-compatible directory layout (`v1.1/data/flood_events/HandLabeled/{S1Hand,LabelHand}/` plus `v1.1/splits/flood_handlabeled/flood_pakistan2022_data.csv`), drop-in usable with any model trained on Sen1Floods11.
+
+**Pre-built chips (recommended)**: download the ready-to-use 39-chip bundle (87 MB) from Google Drive:
+
+<https://drive.google.com/open?id=18hXtLeNYgGSiZQqaHO7TbsPxd_nHapgv>
+
+**Rebuild from sources** (only needed if you want to reproduce the acquisition or extend the chip set): run `data_pipelines/pakistan_2022/acquire_v2.py` on the original sources below.
 
 - **Labels**: TU Wien Sentinel-1-derived flood-extent product, 164 mask tiles at 20 m resolution on the Equi7Grid Asia coordinate system, CC-BY 4.0 license. Download from the TU Wien research data repository: <https://researchdata.tuwien.at/records/zvvmh-nan78>. Original paper: Roth et al., *A SAR-based, decade-long history of flood events in Pakistan and India*, Natural Hazards and Earth System Sciences, 2023 ([paper](https://nhess.copernicus.org/articles/23/3839/2023/)).
 - **Imagery**: Microsoft Planetary Computer `sentinel-1-rtc` STAC collection (Radiometric Terrain Corrected Sentinel-1 GRD products, Copernicus open and free data policy, anonymous SAS-token access). Catalogue: <https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc>. STAC API: <https://planetarycomputer.microsoft.com/api/stac/v1/>.
 
-Reproduction:
+Rebuild command:
 ```bash
 python -m data_pipelines.pakistan_2022.acquire_v2 \
     --masks-dir /path/to/FLOOD-HM-MASKED \
