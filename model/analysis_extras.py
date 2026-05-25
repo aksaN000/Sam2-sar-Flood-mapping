@@ -560,7 +560,7 @@ def main() -> None:
     p.add_argument("--results", type=Path, default=Path("runs/aggregate_results.json"))
     p.add_argument("--sweep-log", type=Path, default=Path("logs/sweep.log"))
     p.add_argument("--gpu-util-csv", type=Path, default=Path("logs/gpu_utilization.csv"))
-    p.add_argument("--output-dir", type=Path, default=Path("thesis/figs"))
+    p.add_argument("--output-dir", type=Path, default=Path("report/figs"))
     p.add_argument("--json-out", type=Path, default=Path("runs/analysis_extras.json"))
     args = p.parse_args()
 

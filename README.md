@@ -10,7 +10,7 @@ Authors: **Aksan Gony Alif** and **Mahbubur Rahman** (BRAC University).
 - `model/configs/` — YAML configs for every (backbone, PEFT, seed) combination in the sweep
 - `future_work/pakistan_2022/` — Pakistan-2022 test-set acquisition pipeline (TU Wien labels + Microsoft Planetary Computer Sentinel-1 RTC). `acquire_v2.py` is the current 10 m native-resolution pipeline used in the paper.
 - `future_work/bangladesh_pipeline/` — Bangladesh-2022-Sylhet test-set construction pipeline (shipped as future work, not empirically evaluated in this paper).
-- `thesis/` — LaTeX source and compiled PDFs for both the IEEE conference paper (`paper_ieee.tex`) and the BRAC University thesis (`thesis_proposal.tex`).
+- `report/` — LaTeX source and compiled PDFs for both the IEEE conference paper (`paper_ieee.tex`) and the BRAC University thesis (`research_report_detailed.tex`).
 - `PAKISTAN2022_RERUN.md` — operational guide for reproducing the v2 Pakistan-2022 evaluation.
 - `run_sweep.ps1`, `run_sweep_2gpu.sh`, `status.ps1` — sweep launchers and progress monitors.
 

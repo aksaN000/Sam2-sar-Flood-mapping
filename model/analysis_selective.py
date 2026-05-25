@@ -95,7 +95,7 @@ def main() -> None:
     p.add_argument("--runs-dir", type=Path, default=Path("runs"))
     p.add_argument("--sen1floods11-root", type=Path, default=Path("./data/sen1floods11"))
     p.add_argument("--pakistan2022-root", type=Path, default=Path("./data/pakistan-2022-chips"))
-    p.add_argument("--output-dir", type=Path, default=Path("thesis/figs"))
+    p.add_argument("--output-dir", type=Path, default=Path("report/figs"))
     p.add_argument("--json-out", type=Path, default=Path("runs/selective_prediction.json"))
     p.add_argument("--n-passes", type=int, default=20)
     p.add_argument("--seed", type=int, default=42)
