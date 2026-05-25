@@ -8,7 +8,6 @@ A single unified LaTeX Beamer deck for the 10-minute video presentation accompan
 |---|---|
 | `slides.tex` | The unified deck. Slides 1–9: Mahbubur (motivation, methods, datasets, setup, transition). Slides 10–17: Aksan (results, polari diagnostic, uncertainty, close). |
 | `slides.pdf` | Compiled output (17 slides, 16:9). |
-| `speaker_notes.md` | Per-slide speaking script for both presenters + delivery checklist. |
 
 ## How to compile
 
@@ -36,8 +35,7 @@ If you want to add more figures, they live in `report/figs/`: `iou_vs_bolivia.pd
 ## Rehearsal flow
 
 1. Compile the deck.
-2. Both presenters read `speaker_notes.md` end-to-end.
-3. Mahbubur rehearses Slides 1–9 with a timer; aim for 5:30.
-4. Practice the handoff (Slide 9 last line → Slide 10 opening line).
-5. Aksan rehearses Slides 10–17; aim for 5:00.
-6. One full rehearsal end-to-end before recording.
+2. Mahbubur rehearses Slides 1–9 with a timer; aim for 5:30.
+3. Practice the handoff (Slide 9 last line → Slide 10 opening line).
+4. Aksan rehearses Slides 10–17; aim for 5:00.
+5. One full rehearsal end-to-end before recording.
