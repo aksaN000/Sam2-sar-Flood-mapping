@@ -1,48 +1,43 @@
 # Video presentation slides
 
-LaTeX Beamer slides for the 10-minute video presentation accompanying the paper. Two-presenter format.
+A single unified LaTeX Beamer deck for the 10-minute video presentation accompanying the paper. Two-presenter format with the handoff at Slide 9 / Slide 10.
 
 ## Files
 
-| File | Owner | What it covers |
-|---|---|---|
-| `slides_part1.tex` | Aksan | Title, motivation, three gaps, methodology, polarimetric input, datasets, experimental setup, handoff. ~5–6 min. |
-| `slides_part2_skeleton.tex` | Mahbubur | Results (headline + polari diagnostic), uncertainty negative finding, conclusion. ~5 min. Skeleton; fill in delivery details during rehearsal. |
-| `speaker_notes_part1.md` | Aksan | Per-slide speaking script + delivery checklist. |
+| File | Contents |
+|---|---|
+| `slides.tex` | The unified deck. Slides 1–9: Aksan (motivation, methods, datasets, setup, transition). Slides 10–17: Mahbubur (results, polari diagnostic, uncertainty, close). |
+| `slides.pdf` | Compiled output (17 slides, 16:9). |
+| `speaker_notes.md` | Per-slide speaking script for both presenters + delivery checklist. |
 
 ## How to compile
 
-Both decks use the `metropolis` Beamer theme.
-
 ```bash
 cd report/video_slides
-pdflatex slides_part1.tex
-pdflatex slides_part2_skeleton.tex
+pdflatex slides.tex
 ```
 
-Run `pdflatex` twice on each if you add `\ref` or `\cite` calls. The current decks don't need a second pass.
-
-If `metropolis` is missing on your TeX install, replace `\usetheme{metropolis}` with `\usetheme{default}` or `\usetheme{Singapore}` — content will be unchanged, only visual styling differs.
+Uses the `metropolis` Beamer theme. If `metropolis` is missing on your TeX install, replace `\usetheme{metropolis}` with `\usetheme{default}` or `\usetheme{Singapore}`.
 
 ## Recording tips
 
-- **Aspect ratio:** 16:9 (already set via `\documentclass[aspectratio=169,11pt]{beamer}`).
-- **Font size:** 11 pt base — readable on any video platform.
-- **Colours:** the accent blue (`#1E64C8`) is used for in-paper-contribution highlights; the warning red (`#C81E1E`) is used for the Pakistan-2022 collapse / cross-polarization punchline.
+- **Aspect ratio:** 16:9 (set via `\documentclass[aspectratio=169,11pt]{beamer}`).
+- **Font size:** 11 pt base, readable on any video platform.
+- **Colours:** accent blue (`#1E64C8`) for in-paper-contribution highlights; warning red (`#C81E1E`) for the Pakistan-2022 collapse and cross-polarization punchline.
 - **Pacing:** Aksan ~5:30, Mahbubur ~5:00. Total slot: ~10:30.
-- **The `\note{}` mechanism** is not used here — speaker notes live in `speaker_notes_part1.md` as Markdown for easier rehearsal.
+- **Handoff:** Slide 9 is Aksan's transition slide. Slide 10 picks up with the headline results. The natural pause for the speaker switch is between them. Speaker notes script the exact handoff line.
 
-## Visual assets used
+## Visual assets
 
-The Part 2 slides embed `../figs/pakistan2022_overlay.pdf` from the paper. All other slides use only text + simple tables to keep file size small and readability high on video.
+Slide 13 embeds `../figs/pakistan2022_overlay.pdf` from the paper — the qualitative 3-chip comparison that visualizes the cross-polarization finding. All other slides use text + simple tables so the deck stays small and readable on video.
 
-If you want to add more figures from the paper (e.g., `iou_vs_bolivia.pdf`, `ood_gap.pdf`, `reliability_diagram.pdf`), they live in `report/figs/`.
+If you want to add more figures, they live in `report/figs/`: `iou_vs_bolivia.pdf`, `ood_gap.pdf`, `reliability_diagram.pdf`, `selective_prediction.pdf`, `iou_per_million_params.pdf`.
 
-## Suggested rehearsal flow
+## Rehearsal flow
 
-1. Compile both decks.
-2. Read `speaker_notes_part1.md` end-to-end.
-3. Aksan rehearses Part 1 with a timer; aim for 5:30.
-4. Practice the handoff (Slide 9 of Part 1 → Slide 1 of Part 2).
-5. Mahbubur rehearses Part 2; aim for 5:00.
+1. Compile the deck.
+2. Both presenters read `speaker_notes.md` end-to-end.
+3. Aksan rehearses Slides 1–9 with a timer; aim for 5:30.
+4. Practice the handoff (Slide 9 last line → Slide 10 opening line).
+5. Mahbubur rehearses Slides 10–17; aim for 5:00.
 6. One full rehearsal end-to-end before recording.
