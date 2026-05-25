@@ -1,0 +1,13 @@
+# Auto-generated. Inherits defaults from _base.yaml.
+defaults:
+  - _base
+
+model:
+  backbone: sam2-hiera-bp
+  peft: conv-lora
+
+train:
+  seed: 20025
+
+dataset:
+  polarimetric_mode: single

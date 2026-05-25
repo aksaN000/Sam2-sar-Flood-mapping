@@ -1,0 +1,11 @@
+# Stub config for U-Net baseline. Used only by eval.py / aggregate_results.py
+# to locate the dataset settings; the model itself is built by train_unet.py
+# (segmentation_models_pytorch U-Net with ResNet-34 encoder).
+defaults:
+  - _base
+
+train:
+  seed: 42
+
+dataset:
+  polarimetric_mode: ratio

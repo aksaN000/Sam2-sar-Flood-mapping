@@ -1,0 +1,13 @@
+# Auto-generated. Inherits defaults from _base.yaml.
+defaults:
+  - _base
+
+model:
+  backbone: sam-vit-b
+  peft: dora
+
+train:
+  seed: 20025
+
+dataset:
+  polarimetric_mode: ratio

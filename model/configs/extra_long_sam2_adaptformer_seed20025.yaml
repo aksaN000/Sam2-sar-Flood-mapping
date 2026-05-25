@@ -1,0 +1,11 @@
+defaults:
+  - _base
+model:
+  backbone: sam2-hiera-bp
+  peft: adaptformer
+  adaptformer_dim: 64
+train:
+  seed: 20025
+  finetune_epochs: 30
+dataset:
+  polarimetric_mode: ratio
