@@ -18,7 +18,7 @@ validity filter, output layout) is preserved from v1 so the dataset loader
 and downstream evaluation code do not need to change.
 
 Run:
-    python -m future_work.pakistan_2022.acquire_v2 \
+    python -m data_pipelines.pakistan_2022.acquire_v2 \
         --masks-dir D:/datasets/pakistan-2022/FLOOD-HM-MASKED \
         --out-dir   D:/datasets/pakistan-2022-chips-v2
 

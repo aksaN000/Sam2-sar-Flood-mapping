@@ -17,7 +17,7 @@ were just being tested on the wrong-scale Pakistan-2022 chips.
 
 ## Files added
 
-- `future_work/pakistan_2022/acquire_v2.py` — fixed acquisition pipeline.
+- `data_pipelines/pakistan_2022/acquire_v2.py` — fixed acquisition pipeline.
 - `model/rerun_pakistan2022.py` — re-evaluates existing checkpoints on the
   new v2 chips and patches `runs/aggregate_results.json` in place (the
   pre-patch aggregate is backed up to `runs/aggregate_results.before_v2.json`).
@@ -32,7 +32,7 @@ mask tiles) to whichever machine runs the rerun.
 ### Step 2. Rebuild the chip set at 10 m
 ```bash
 conda activate sam2-sar
-python -m future_work.pakistan_2022.acquire_v2 \
+python -m data_pipelines.pakistan_2022.acquire_v2 \
     --masks-dir D:/datasets/pakistan-2022/FLOOD-HM-MASKED \
     --out-dir   D:/datasets/pakistan-2022-chips-v2
 ```

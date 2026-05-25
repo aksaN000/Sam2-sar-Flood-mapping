@@ -1,7 +1,7 @@
 """Re-evaluate Pakistan-2022 only on existing checkpoints, then patch aggregate.
 
 Targeted rerun after fixing the Pakistan-2022 acquisition pipeline
-(future_work/pakistan_2022/acquire_v2.py). This script does NOT retrain:
+(data_pipelines/pakistan_2022/acquire_v2.py). This script does NOT retrain:
 it walks runs/<config>/ directories, loads each best/last checkpoint,
 runs inference on the v2 Pakistan-2022 chips, and patches the
 `splits.pakistan2022` block of runs/aggregate_results.json in-place.
@@ -157,7 +157,7 @@ def main() -> None:
     print(f"[rerun] patched aggregate written to {args.aggregate}")
     print(f"[rerun] backup of pre-patch aggregate at {backup}")
     print("[rerun] Now regenerate tables/figures:")
-    print("  python -m model.make_figures --results runs/aggregate_results.json --output thesis/figs")
+    print("  python -m model.make_figures --results runs/aggregate_results.json --output report/figs")
     print("  python -m model.analysis_extras  # for OOD-gap and other extras")
 
 
