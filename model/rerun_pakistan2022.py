@@ -1,7 +1,7 @@
 """Re-evaluate Pakistan-2022 only on existing checkpoints, then patch aggregate.
 
 Targeted rerun after fixing the Pakistan-2022 acquisition pipeline
-(data_pipelines/pakistan_2022/acquire_v2.py). This script does NOT retrain:
+(model/acquire_pakistan2022.py). This script does NOT retrain:
 it walks runs/<config>/ directories, loads each best/last checkpoint,
 runs inference on the v2 Pakistan-2022 chips, and patches the
 `splits.pakistan2022` block of runs/aggregate_results.json in-place.

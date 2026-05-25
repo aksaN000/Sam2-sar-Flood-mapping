@@ -6,9 +6,8 @@ Authors: **Aksan Gony Alif** and **Mahbubur Rahman** (BRAC University).
 
 ## What's in this repository
 
-- `model/` — training, evaluation, and analysis code (PyTorch Lightning + HuggingFace Transformers)
-- `model/configs/` — YAML configs for every (backbone, PEFT, seed) combination in the sweep
-- `data_pipelines/pakistan_2022/` — Pakistan-2022 test-set acquisition pipeline (TU Wien labels + Microsoft Planetary Computer Sentinel-1 RTC). `acquire_v2.py` is the current 10 m native-resolution pipeline used in the paper.
+- `model/` — training, evaluation, and analysis code (PyTorch Lightning + HuggingFace Transformers). Includes the dataset acquisition scripts: `model/download_sen1floods11.py` (Sen1Floods11) and `model/acquire_pakistan2022.py` (Pakistan-2022 from TU Wien labels + Microsoft Planetary Computer Sentinel-1 RTC).
+- `model/configs/` — YAML configs for every (backbone, PEFT, seed) combination in the sweep.
 - `future_work/bangladesh_pipeline/` — Bangladesh-2022-Sylhet test-set construction pipeline (shipped as future work, not empirically evaluated in this paper).
 - `report/` — LaTeX source and compiled PDFs for both the IEEE conference paper (`paper_ieee.tex`) and the BRAC University thesis (`research_report_detailed.tex`).
 - `PAKISTAN2022_RERUN.md` — operational guide for reproducing the v2 Pakistan-2022 evaluation.
@@ -45,7 +44,7 @@ python -m model.train --config model/configs/sam2_hiera_bp_lora_seed42.yaml \
 Build the Pakistan-2022 test set (requires the TU Wien flood-extent labels; see `PAKISTAN2022_RERUN.md`):
 
 ```bash
-python -m data_pipelines.pakistan_2022.acquire_v2 \
+python -m model.acquire_pakistan2022 \
     --masks-dir /path/to/FLOOD-HM-MASKED \
     --out-dir /path/to/pakistan-2022-chips-v2
 ```
@@ -77,14 +76,14 @@ python -m model.rerun_pakistan2022 \
 
 <https://drive.google.com/open?id=18hXtLeNYgGSiZQqaHO7TbsPxd_nHapgv>
 
-**Rebuild from sources** (only needed if you want to reproduce the acquisition or extend the chip set): run `data_pipelines/pakistan_2022/acquire_v2.py` on the original sources below.
+**Rebuild from sources** (only needed if you want to reproduce the acquisition or extend the chip set): run `model/acquire_pakistan2022.py` on the original sources below.
 
 - **Labels**: TU Wien Sentinel-1-derived flood-extent product, 164 mask tiles at 20 m resolution on the Equi7Grid Asia coordinate system, CC-BY 4.0 license. Download from the TU Wien research data repository: <https://researchdata.tuwien.at/records/zvvmh-nan78>. Original paper: Roth et al., *A SAR-based, decade-long history of flood events in Pakistan and India*, Natural Hazards and Earth System Sciences, 2023 ([paper](https://nhess.copernicus.org/articles/23/3839/2023/)).
 - **Imagery**: Microsoft Planetary Computer `sentinel-1-rtc` STAC collection (Radiometric Terrain Corrected Sentinel-1 GRD products, Copernicus open and free data policy, anonymous SAS-token access). Catalogue: <https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc>. STAC API: <https://planetarycomputer.microsoft.com/api/stac/v1/>.
 
 Rebuild command:
 ```bash
-python -m data_pipelines.pakistan_2022.acquire_v2 \
+python -m model.acquire_pakistan2022 \
     --masks-dir /path/to/FLOOD-HM-MASKED \
     --out-dir /path/to/pakistan-2022-chips-v2
 ```
