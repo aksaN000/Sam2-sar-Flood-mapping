@@ -32,10 +32,3 @@ Slide 13 embeds `../figs/pakistan2022_overlay.pdf` from the paper, the qualitati
 
 If you want to add more figures, they live in `report/figs/`: `iou_vs_bolivia.pdf`, `ood_gap.pdf`, `reliability_diagram.pdf`, `selective_prediction.pdf`, `iou_per_million_params.pdf`.
 
-## Rehearsal flow
-
-1. Compile the deck.
-2. Mahbubur rehearses Slides 1–9 with a timer; aim for 5:30.
-3. Practice the handoff (Slide 9 last line → Slide 10 opening line).
-4. Aksan rehearses Slides 10–17; aim for 5:00.
-5. One full rehearsal end-to-end before recording.
