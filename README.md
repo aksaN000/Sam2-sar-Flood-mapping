@@ -6,12 +6,12 @@ Authors: **Aksan Gony Alif** and **Mahbubur Rahman** (BRAC University).
 
 ## What's in this repository
 
-- `model/` — training, evaluation, and analysis code (PyTorch Lightning + HuggingFace Transformers). Includes the dataset acquisition scripts: `model/download_sen1floods11.py` (Sen1Floods11) and `model/acquire_pakistan2022.py` (Pakistan-2022 from TU Wien labels + Microsoft Planetary Computer Sentinel-1 RTC).
-- `model/configs/` — YAML configs for every (backbone, PEFT, seed) combination in the sweep.
-- `future_work/bangladesh_pipeline/` — Bangladesh-2022-Sylhet test-set construction pipeline (shipped as future work, not empirically evaluated in this paper).
-- `report/` — LaTeX source and compiled PDFs for both the IEEE conference paper (`paper_ieee.tex`) and the BRAC University thesis (`research_report_detailed.tex`).
-- `PAKISTAN2022_RERUN.md` — operational guide for reproducing the v2 Pakistan-2022 evaluation.
-- `run_sweep.ps1`, `run_sweep_2gpu.sh`, `status.ps1` — sweep launchers and progress monitors.
+- `model/`: training, evaluation, and analysis code (PyTorch Lightning + HuggingFace Transformers). Includes the dataset acquisition scripts: `model/download_sen1floods11.py` (Sen1Floods11) and `model/acquire_pakistan2022.py` (Pakistan-2022 from TU Wien labels + Microsoft Planetary Computer Sentinel-1 RTC).
+- `model/configs/`: YAML configs for every (backbone, PEFT, seed) combination in the sweep.
+- `future_work/bangladesh_pipeline/`: Bangladesh-2022-Sylhet test-set construction pipeline (shipped as future work, not empirically evaluated in this paper).
+- `report/`: LaTeX source and compiled PDFs for both the IEEE conference paper (`paper_ieee.tex`) and the BRAC University thesis (`research_report_detailed.tex`).
+- `PAKISTAN2022_RERUN.md`: operational guide for reproducing the v2 Pakistan-2022 evaluation.
+- `run_sweep.ps1`, `run_sweep_2gpu.sh`, `status.ps1`: sweep launchers and progress monitors.
 
 ## What the paper contributes
 
